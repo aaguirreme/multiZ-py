@@ -38,13 +38,15 @@ class mdual(core.mnumber):
         Pretty print representation of a multidual number.
 
         :param self: A multidual number to be converted into a Pretty print
-            prepresentation
+            representation
         :type self: mdual
 
         .. code-block:: Python
 
             >>> print(mdual([1,2,3,4]))
             1 + 2*eps(1) + 3*eps(2) + 4*eps([1, 2])
+
+        ..
         """
 
         return core.multi_str(self, "eps")
@@ -321,13 +323,12 @@ class mdual(core.mnumber):
 
     def __rtruediv__(self, other):
         """
-        
-        To provide reverse division for multidual arrays.
+        :return: mdual
 
-        It defines how to make a division between a scalar and a
-        multidual number.
+        Provides reverse division for multidual numbers, i.e., it defines how
+        to make a division between a scalar and a multidual number.
 
-        :param self: Real value
+        :param self: real number
         :param other: multidual number
         :type self: int, float
         :type other: mdual
@@ -376,7 +377,6 @@ class mdual(core.mnumber):
         new.numcoeffs = n
 
         return new
-
 
     def __pow__(self, other):
         """
@@ -901,7 +901,7 @@ class marray(core.marray):
         whose result is the division of the scalar by each
         element of the original array.
 
-        :type self: int, float ???
+        :type self: int, float
         :type other: marray
 
         .. code-block:: Python
@@ -911,26 +911,26 @@ class marray(core.marray):
             >>> print(2 / M)
             marray([[[ 2.        ,-4.        ],
                      [ 0.66666667,-0.88888889]],
-
                     [[ 0.4       ,-0.48      ],
                      [ 0.28571429,-0.32653061]]])
+
         ..
         """
 
-        new = self.__class__([[0]])             # New array for result.
+        new = self.__class__([[0]])               # New array for result.
 
-        coeffs = self.coeffs                    # Create a view to self.coeffs.
-        order = self.order                      # Get attributes.
+        coeffs = self.coeffs                      # Create a view to self.coeffs.
+        order = self.order                        # Get attributes.
         n = self.numcoeffs
 
-        shape = self.shape                      # Get self's array attributes.
-        size = self.size                        # These won't change.
+        shape = self.shape                        # Get self's array attributes.
+        size = self.size                          # These won't change.
 
         # Allocate space for coefficients.
-        num = np.zeros(shape + (n,), np.float64)    # Numerator.
-        den = np.zeros(n, np.float64)               # Denominator.
-        old = np.zeros(n, np.float64)               # Space for copies.
-        cden = np.zeros(n, np.float64)              # Conjugated denominator.
+        num = np.zeros(shape + (n,), np.float64)  # Numerator.
+        den = np.zeros(n, np.float64)             # Denominator.
+        old = np.zeros(n, np.float64)             # Space for copies.
+        cden = np.zeros(n, np.float64)            # Conjugated denominator.
 
         for i in range(size):
 
@@ -946,6 +946,8 @@ class marray(core.marray):
         new.coeffs = num                        # Overwrite attributes.
         new.order = order
         new.numcoeffs = n
+        new.shape = shape
+        new.size = size
 
         return new
 

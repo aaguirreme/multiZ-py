@@ -38,7 +38,7 @@ class mcomplex(core.mnumber):
         Pretty print representation of a multicomplex number.
 
         :param self: A multicomplex number to be converted into a Pretty print
-            prepresentation
+            representation
         :type self: mcomplex
 
         .. code-block:: Python
@@ -287,16 +287,12 @@ class mcomplex(core.mnumber):
 
     def __rtruediv__(self, other):
         """
-        :return: marray
-        
-        To provide reverse division for multicomplex arrays.
+        :return: mcomplex
 
-        It defines how to make a division between a scalar and a
-        multicomplex array. This function creates a new array
-        whose result is the division of the scalar by each
-        element of the original array.
+        Provides reverse division for multicomplex numbers, i.e., it defines
+        how to make a division between a scalar and a multicomplex number.
 
-        :param self: Real value
+        :param self: real number
         :param other: multicomplex number
         :type self: int, float
         :type other: mcomplex
@@ -701,10 +697,10 @@ class marray(core.marray):
     def __truediv__(self, other):
         """
         :return: marray
-        
+
         Provides division of an array of multicomplex values with scalars and
         multicomplex numbers.
-        
+
         :param self: multicomplex number
         :param other: scalar or multicomplex number to be divided with self
         :type self: marray
@@ -844,7 +840,7 @@ class marray(core.marray):
         whose result is the division of the scalar by each
         element of the original array.
 
-        :type self: int, float ???
+        :type self: int, float
         :type other: marray
 
         .. code-block:: Python
@@ -889,6 +885,8 @@ class marray(core.marray):
         new.coeffs = num                        # Overwrite attributes.
         new.order = order
         new.numcoeffs = n
+        new.shape = shape
+        new.size = size
 
         return new
 
